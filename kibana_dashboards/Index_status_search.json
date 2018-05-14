@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "8f8a9af0-4edb-11e8-ba63-7d47d253ca41",
+    "_type": "search",
+    "_source": {
+      "title": "Index Status Search",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"1b5c7ec0-4ed4-11e8-ba63-7d47d253ca41\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
+      }
+    }
+  }
+]
