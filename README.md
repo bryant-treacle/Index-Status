@@ -42,8 +42,10 @@ Note:  For the index_status_search.json and the index_status_visualization.json 
 
 At this point you can navigate to the new dashboard by selecting Dashboards on the left pane of Kibana then searching for Index Status.  If you want to be able to pivot to this dashboard you can edit the navigation visualization and add an entry for Index Status.  You will need to copy the uri information from the index status dashboard beginning at /app and ending befor the ?.  If you are unfamiliar with markdown language you will need to put 2 spaces at the end of the previous entry to have your link show up on the next line. 
 
-Authors
+Please feel free to leave suggestions for improvements.
+
+# Author
 Bryant Treacle
 
-License
+# License
 This project is licensed under the MIT License - see the LICENSE.md file for details
