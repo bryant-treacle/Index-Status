@@ -48,8 +48,6 @@ Please feel free to leave suggestions for improvements.
 # Why I did what I did in the scripts.
 The index_status.sh script will delete the entire elasticsearch-index-stats index every time it runs.  The reason for this is that the query will return all the indexes that elasticsearch knows about therefore constantly ingesting the same data. If you want to keep the data you can comment out the curl -XDELETE line at the beginning of the script.  
 
-A cronjob is set to run this Daily but can easily be changed.
-
 # Author 
 Bryant Treacle 
  
