@@ -127,27 +127,65 @@
               }
             }
           },
-                  "queue_push_duration_in_millis": {
-                    "type": "long"
-                  },
+          "queue_push_duration_in_millis": {
+            "type": "long"
+             },
           "duration_in_millis": {
-                    "type": "long"
-                  },
-                  "out": {
-                    "type": "long"
-                  },
-                  "dropped_events": {
-                    "type": "long"
-                  },
-                  "filtered": {
-                    "type": "long"
-                  },
-                  "in": {
-                    "type": "long"
-                  }
-                }
-    
-           }
-     }
-}
+            "type": "long"
+             },
+          "out": {
+            "type": "long"
+             },
+          "dropped_events": {
+            "type": "long"
+             },
+          "filtered": {
+            "type": "long"
+             },
+          "in": {
+            "type": "long"
+             },
+          "syslog_ng_sensor": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+	   "destination": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+	   "syslog_ng_protocol": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+	"syslog_action": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
 
+	"packets": {
+            "type": "long"
+           }
+         }
+      }
+   }
+}
