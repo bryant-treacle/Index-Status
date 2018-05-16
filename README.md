@@ -22,7 +22,7 @@ Below are the files that were moved to the /etc/logstash/conf.d/ folder:
 * 9050_output_index_status.conf   
 Note: These files can be deleted if logstash fails to initialize properly.   
  
-Step 4.  Once Logstash is fully initialized execute the index_stasus.sh and syslog_ng_stats.sh scripts.   
+Step 4.  Once Logstash is fully initialized execute the index_stasus.sh and syslog_ng_stats.sh scripts.
 Note: If logstash is not fully initialized you will receive errors while the index_status.sh script attempts to curl logstash.   
  
 Step 5. After the scripts have completed you will need to create the index pattern for the data ingested.  To do this follow these steps: 
