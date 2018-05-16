@@ -22,7 +22,7 @@ Below are the files that were moved to the /etc/logstash/conf.d/ folder:
 * 9050_output_index_status.conf   
 Note: These files can be deleted if logstash fails to initialize properly.   
  
-Step 4.  Once Logstash is fully initialized execute the index_stasus.sh and syslog_ng_stats.sh scripts.
+Step 4.  Once Logstash is fully initialized execute the index_status.sh and syslog_ng_stats.sh scripts.
 Note: If logstash is not fully initialized you will receive errors while the index_status.sh script attempts to curl logstash.   
  
 Step 5. After the scripts have completed you will need to create the index pattern for the data ingested.  To do this follow these steps: 
@@ -44,7 +44,12 @@ Note:  For the index_status_search.json and the index_status_visualization.json 
 At this point you can navigate to the new dashboard by selecting Dashboards on the left pane of Kibana then searching for Index Status.  If you want to be able to pivot to this dashboard you can edit the navigation visualization and add an entry for Index Status.  You will need to copy the uri information from the index status dashboard beginning at /app and ending before the ?.  If you are unfamiliar with markdown language you will need to put 2 spaces at the end of the previous entry to have your link show up on the next line.  
  
 Please feel free to leave suggestions for improvements. 
- 
+
+# Why I did what I did in the scripts.
+The index_status.sh script will delete the entire elasticsearch-index-stats index every time it runs.  The reason for this is that the query will return all the indexes that elasticsearch knows about therefore constantly ingesting the same data. If you want to keep the data you can comment out the curl -XDELETE line at the beginning of the script.  
+
+A cronjob is set to run this Daily but can easily be changed.
+
 # Author 
 Bryant Treacle 
  
