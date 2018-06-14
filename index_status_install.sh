@@ -9,7 +9,7 @@ echo "This Script will automate the steps needed to configure Security Onion to 
 echo "Do you want to continue? (Y/N)" 
 read userselect
 
-if [ "$userselect" = "Y" ] ; then
+if [ ${userselect,,} = "y" ] ; then
 	echo "Copy logstash config files from ~/index_status/logstash_configs/ to /etc/logstash/conf.d/"
 	    chmod 777 index_status.sh
 	    chmod -R 644 logstash_config/index_status/*
@@ -20,33 +20,35 @@ if [ "$userselect" = "Y" ] ; then
             curl -XPUT 'localhost:9200/_template/elasticsearch-index' -H 'Content-Type: application/json' -d @logstash_config/index_status/elasticsearch-index-template.json
         echo ""
         #Add a cron job to run the index_status script
-	    username=$USER
-	echo "Adding a cron job to run index_status.sh daily at midnight and syslog_ng_stats.sh hourly but need the location of the scripts"
-        echo ""
-	echo "Is '/home/$username/index_status/index_status.sh' the location of the index_status.sh script? (Y/N)"
+	    username=$(pwd)
+	echo "Is '$username/index_status.sh' the location of the index_status.sh script? (Y/N)"
             read  scriptlocation
-                if [ "$scriptlocation" = "Y" ] ; then
-                    echo "Adding the crontab."
-                    echo "01 00 * * * root /home/$username/index_status/index_status.sh" >> /etc/crontab
-					echo "@hourly root /home/$username/index_status/syslog_ng_stats.sh" >> /etc/crontab
-                elif [ "$scriptlocation" = "N" ] ; then
+                if [ ${scriptlocation,,} = "y" ] ; then
+                    echo "Adding a cron job to run index_status.sh daily  and syslog_ng_stats.sh hourly."
+                    chmod 777 index_status.sh && chmod 777 syslog_ng_stats.sh
+		    chown root:root index_status.sh && chown root:root syslog_ng_stats.sh
+		    cp index_status.sh /etc/cron.daily && cp syslog_ng_stats.sh /etc/cron.hourly
+		
+                elif [ ${scriptlocation,,} = "n" ] ; then
                     echo "Enter the location (including the file name) of the script. example /home/user/"
                     read scriptuserlocation
                     echo "Is '$scriptuserlocation' the correct location of the script? (Y/N)"
                     read scriptlocationcheck
-                    if [ "$scriptlocationcheck" = "Y" ] ; then
-                        echo "Adding the crontab"
-                        echo "01 00 * * * root $scriptuserlocation/index_status.sh" >> /etc/crontab
-						echo "@hourly root $scriptuserlocation/syslog_ng_stats.sh" >> /etc/crontab
-                    elif [ "$scriptlocationcheck" = "N" ] ; then
+                    if [ ${scriptlocationcheck,,} = "y" ] ; then
+			echo "Adding a cron job to run index_status.sh daily  and syslog_ng_stats.sh hourly but need the location of the scripts"
+                        chmod 777 index_status.sh && chmod 777 syslog_ng_stats.sh
+                        chown root:root index_status.sh && chown root:root syslog_ng_stats.sh
+                        cp index_status.sh /etc/cron.daily && cp syslog_ng_stats.sh /etc/cron.hourly
+		    elif [ ${scriptlocationcheck,,} = "n" ] ; then
                 	echo "Enter the location (including the file name) of the script. example /home/user/index_status.sh"
                         read scriptuserlocation
                 	echo "Is '$scriptuserlocation' the correct location of the script? (Y/N)"
                 	read scriptlocationcheck
-                    		if [ "$scriptlocationcheck" = "Y" ] ; then
-                        	    echo "Adding the crontab"
-				    echo "01 00 * * * root $scriptuserlocation/index_status.sh" >> /etc/crontab
-					echo "@hourly root $scriptuserlocation/syslog_ng_stats.sh" >> /etc/crontab
+                    		if [ ${scriptlocationcheck,,} = "n" ] ; then
+				    echo "Adding a cron job to run index_status.sh daily  and syslog_ng_stats.sh hourly but need the location of the scripts"
+                    		    chmod 777 index_status.sh && chmod 777 syslog_ng_stats.sh
+                    		    chown root:root index_status.sh && chown root:root syslog_ng_stats.sh
+                    		    cp index_status.sh /etc/cron.daily && cp syslog_ng_stats.sh /etc/cron.hourly
  		    		else  
                        		     echo "exiting"
                     		fi
@@ -57,7 +59,7 @@ if [ "$userselect" = "Y" ] ; then
 	echo "Here are your current LOGSTASH_OPTIONS:   $currentlogstashoptions"
 	echo "If you already have logstash options configured  press 1, if not press any key to continue"
 	read logstashchoice
-	if [ "$logstashchoice" = "1" ] ; then
+	if [ $logstashchoice = "1" ] ; then
 	    echo "Add the following to your existing options to mount a new volume: --volume /etc/logstash/Data:/etc/logstash/Data:ro"
 	    echo "Enter All logstash options as they should appear in the securityonion.conf file"
 	    read logstashoptions
@@ -72,11 +74,15 @@ if [ "$userselect" = "Y" ] ; then
 	so-logstash-restart
 	echo "Once logstash fully initializes run the index_status.sh script to ingest the initial data."
 	echo ""
+	sleep 5
 	echo "This will be needed to build the index pattern in Kibana."
 	echo ""
+	sleep 5
 	echo "A Pre-configured Dashboard with visualizations and searches are located in script/kibana_dashboards folder." 
 	echo ""
+	sleep 5
 	echo "Import them using Kibana's Management -> Saved Object -> import feature"
         echo ""
+	sleep 5
 	echo "You will also want to edit the navigate visualization and add the index status dashboard as a hyper-link."
 fi
