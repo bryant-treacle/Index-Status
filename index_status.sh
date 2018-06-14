@@ -27,12 +27,3 @@ curl -XGET 'localhost:9200/_cat/indices?&h=i,tm&s=tm:desc&pretty' | awk '{print 
 sleep 10s
 #query logstash to get pipeline events
 curl -XGET 'localhost:9600/_node/stats/events' | jq -r '[.events[]] |@csv' > /etc/logstash/Data/Logstash_Pipeline_Events.csv
-#Gather syslog-ng stats on all Security Onion Sensors which are Salt Minions and saving the results to a csv.
-sudo salt '*' cmd.run 'syslog-ng-ctl stats | grep d_logstash'  --output text --out-file syslog-ng-stats.csv
-
-# Formatting the Output into proper columns
-sed -i -e 's/: /,/g' syslog-ng-stats.csv
-sed -i -e 's/,,/,,,/g' syslog-ng-stats.csv
-
-# Moving file to Logstash directory to be ingested.
-sudo mv syslog-ng-stats.csv /etc/logstash/Data
