@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 #author Bryant Treacle
 #date 11 May 18
 #purpose: This script will gather syslog-ng stats on all Security Onion Sensors which are Salt Minions and saving the results to a csv.
