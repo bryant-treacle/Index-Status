@@ -7,6 +7,7 @@ sudo salt '*' cmd.run 'syslog-ng-ctl stats | grep d_logstash'  --output text --o
 
 # Formatting the Output into proper columns
 sed -i -e 's/: /,/g' syslog-ng-stats.csv
+sed -i -e 's/;/,/g' syslog-ng-stats.csv
 sed -i -e 's/,,/,,,/g' syslog-ng-stats.csv
 
 # Moving file to Logstash directory to be ingested.
