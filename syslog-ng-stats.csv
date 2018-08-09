@@ -1,0 +1,4 @@
+SecOnion-Master,dst.tcp,d_logstash#0,tcp,127.0.0.1:6050,a,dropped,9645
+SecOnion-Master,dst.tcp,d_logstash#0,tcp,127.0.0.1:6050,a,processed,24010
+SecOnion-Master,dst.tcp,d_logstash#0,tcp,127.0.0.1:6050,a,stored,0
+SecOnion-Master,dst.tcp,d_logstash,,,a,processed,24010
