@@ -1,0 +1,294 @@
+{
+  "index_patterns": ["elastic-health-*"],
+  "version":50003,
+  "order" : 3,
+  "settings":{
+    "number_of_replicas": "0",
+    "number_of_shards": "1",
+    "index.refresh_interval":"30s"
+  },
+  "mappings": {
+        "doc" : {
+        "properties": {
+          "@timestamp": {
+            "type": "date"
+          },
+          "@version": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "active_shards_percent": {
+            "type": "long"
+          },
+          "cluster": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "docs_count": {
+            "type": "long"
+          },
+          "docs_deleted": {
+            "type": "long"
+          },
+          "dropped_events": {
+            "type": "long"
+          },
+          "elasticsearch_heap_percent": {
+            "type": "long"
+          },
+          "elasticsearch_ram_percent": {
+            "type": "long"
+          },
+          "events": {
+            "properties": {
+              "dropped_events": {
+                "type": "long"
+              },
+              "duration_in_millis": {
+                "type": "long"
+              },
+              "filtered": {
+                "type": "long"
+              },
+              "in": {
+                "type": "long"
+              },
+              "out": {
+                "type": "long"
+              },
+              "queue_push_duration_in_millis": {
+                "type": "long"
+              }
+            }
+          },
+          "gc_old_count": {
+            "type": "long"
+          },
+          "gc_young_count": {
+            "type": "long"
+          },
+          "health": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "http_address": {
+            "type": "ip"
+          },
+          "id": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "index": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "index_memory_size": {
+            "type": "long"
+          },
+	   "index_store_size": {
+            "type": "long"
+          },
+
+          "init": {
+            "type": "long"
+          },
+          "logstash_heap_percent": {
+            "type": "long"
+          },
+          "logstash_time": {
+            "type": "float"
+          },
+          "max_task_wait_time": {
+            "type": "long"
+          },
+          "name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "node": {
+            "properties": {
+              "data": {
+                "type": "long"
+              },
+              "total": {
+                "type": "long"
+              }
+            }
+          },
+          "pending_tasks": {
+            "type": "long"
+          },
+          "pri": {
+            "type": "long"
+          },
+          "primary_shards": {
+            "type": "long"
+          },
+          "protocol": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "relo": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "replica_shards": {
+            "type": "long"
+          },
+          "search": {
+            "properties": {
+              "fetch_time": {
+                "type": "long"
+              },
+              "query_time": {
+                "type": "long"
+              }
+            }
+          },
+          "sensor_name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "shards": {
+            "type": "long"
+          },
+          "status": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "index_store_size_per_shard": {
+            "type": "long"
+          },
+          "syslog_ng_action": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "syslog_ng_destination": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "syslog_ng_destination_ip": {
+            "type": "ip"
+          },
+          "syslog_ng_dst_proto": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "syslog_ng_remove": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "syslog_ng_value": {
+            "type": "long"
+          },
+          "tags": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "unassign": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "uuid": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "version": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
