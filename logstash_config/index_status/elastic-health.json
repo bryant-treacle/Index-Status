@@ -7,8 +7,8 @@
     "number_of_shards": "1",
     "index.refresh_interval":"30s"
   },
-  "mappings": {
-        "doc" : {
+    "mappings": {
+      "doc": {
         "properties": {
           "@timestamp": {
             "type": "date"
@@ -34,6 +34,36 @@
               }
             }
           },
+          "destination_geo": {
+            "type": "object"
+          },
+          "destination_ip": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+            "destination_ips": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "destination_port": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
           "docs_count": {
             "type": "long"
           },
@@ -49,27 +79,20 @@
           "elasticsearch_ram_percent": {
             "type": "long"
           },
-          "events": {
-            "properties": {
-              "dropped_events": {
-                "type": "long"
-              },
-              "duration_in_millis": {
-                "type": "long"
-              },
-              "filtered": {
-                "type": "long"
-              },
-              "in": {
-                "type": "long"
-              },
-              "out": {
-                "type": "long"
-              },
-              "queue_push_duration_in_millis": {
-                "type": "long"
-              }
-            }
+           "events_duration": {
+            "type": "long"
+          },
+          "events_filtered": {
+            "type": "long"
+          },
+          "events_in": {
+            "type": "long"
+          },
+          "events_out": {
+            "type": "long"
+          },
+          "events_queue_push_duration": {
+            "type": "long"
           },
           "gc_old_count": {
             "type": "long"
@@ -110,10 +133,9 @@
           "index_memory_size": {
             "type": "long"
           },
-	   "index_store_size": {
+          "index_store_size": {
             "type": "long"
           },
-
           "init": {
             "type": "long"
           },
@@ -218,27 +240,6 @@
               }
             }
           },
-          "syslog_ng_destination": {
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword",
-                "ignore_above": 256
-              }
-            }
-          },
-          "syslog_ng_destination_ip": {
-            "type": "ip"
-          },
-          "syslog_ng_dst_proto": {
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword",
-                "ignore_above": 256
-              }
-            }
-          },
           "syslog_ng_remove": {
             "type": "text",
             "fields": {
@@ -289,6 +290,7 @@
           }
         }
       }
-    }
+    },
+    "aliases": {}
   }
 }
