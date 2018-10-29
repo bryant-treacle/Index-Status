@@ -9,7 +9,7 @@ from subprocess import *
 #name = (socket.gethostname())
 #print(name)
 
-# Get the elasticsearch node name inclued in the output of redis
+# Get the elasticsearch node name included in the output of redis
 proc = Popen(["curl", "-XGET", "localhost:9200/_cat/nodes?h=name"], stdout=PIPE, stderr=PIPE)
 time.sleep(5)
 # Split sttout and stderr to eliminate the exit code
